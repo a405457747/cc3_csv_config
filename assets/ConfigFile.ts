@@ -9,16 +9,18 @@ export class ConfigFile extends Component {
 
     start() {
        let dataObj=  this.csvTojson(this.csvText.text);
+      // console.log(JSON.parse("22"),JSON.parse("false"));
        console.log(dataObj.data,dataObj.datas);
     }
 
+    //这个方法是初步解析，需要深度解析还需自制呢
     csvTojson(data:string){
         const csvLines: string[] = data.split(/\r\n|\n|\r/);
         let csvFixedLines=[];
         for(let i=0;i<csvLines.length;i++){
             let item =csvLines[i].split(",");
             for(let j =0;j<item.length;j++){
-                item[j] =item[j].trim();
+                item[j]=item[j].trim();
             }
             csvFixedLines[i]=item;
         }
@@ -35,6 +37,10 @@ export class ConfigFile extends Component {
             for(let j =0;j<keys.length;j++){
                 let key =keys[j];
                 let val =csvFixedLines_item[j];
+                try {
+                    val =JSON.parse(val);
+                } catch (error) {
+                }
                 jsObj[key]=val;
             }
 
