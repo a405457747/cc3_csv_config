@@ -23,7 +23,7 @@ def write_matrix_to_csv(excel_file):
         matrix_data = sheet.used_range.value
         
         # 将数据写入 CSV 文件
-        with open(output_csv_file, 'w') as f:
+        with open(output_csv_file, 'w',encoding="utf-8") as f:
             for row in matrix_data:
                 f.write(','.join(str(cell) for cell in row) + '\n')
         
