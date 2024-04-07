@@ -338,6 +338,10 @@
       "__uuid__": "c75db3f8-e327-48b5-bf68-f455d5d34ad0",
       "__expectedType__": "cc.Prefab"
     },
+    "jsonText": {
+      "__uuid__": "d5d72fad-367f-40fc-8652-a2e45f9cee60",
+      "__expectedType__": "cc.JsonAsset"
+    },
     "_id": "32f5Fw8nNPxIKuJ5K8fLyw"
   },
   {
