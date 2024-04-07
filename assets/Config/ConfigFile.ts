@@ -35,11 +35,17 @@ export class ConfigFile extends Component {
         prety_girl.age+=a;
         a+=1;
         print(a);
+        
 
+        this.ff(Bk.add);
     }
 
     getsum(a, b) {
         return a + b;
+    }
+
+    ff(f){
+            print(f(6,6));
     }
 
     getJson(data: JsonAsset) {
