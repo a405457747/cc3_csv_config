@@ -2,6 +2,8 @@ import { _decorator, Component, instantiate, JsonAsset, Node, Prefab, TextAsset 
 const { ccclass, property } = _decorator;
 
 
+let print = console.log;
+import { Bk } from './kk/Bk';
 @ccclass('ConfigFile')
 export class ConfigFile extends Component {
 
@@ -12,33 +14,42 @@ export class ConfigFile extends Component {
     ps: Prefab = null;
 
     @property(JsonAsset)
-    jsonText:JsonAsset=null;
+    jsonText: JsonAsset = null;
 
     start() {
-        let prety_girl={
-            age:33,
-            name:"andy"
+        let prety_girl = {
+            age: 33,
+            name: "andy"
         }
-        let dataObj = this.csvTojson(this.csvText.text);
-        // console.log(JSON.parse("22"),JSON.parse("false"));
-        console.log(dataObj.data, dataObj.datas);
-        console.log("hello world",this.getsum(3,2),prety_girl);
-        console.log("nihaoma");
-        console.log(this.getJson(this.jsonText));
+
+        print("hello world",prety_girl,prety_girl)
+        print(3+2);
+        let a =1;
+        a+=1;
+        prety_girl.age+=a;
+        a+=2;
+        prety_girl.age+=a;
+        a+=3;
+        prety_girl.age+=a;
+        a+=Bk.add(7,8);
+        prety_girl.age+=a;
+        a+=1;
+        print(a);
+
     }
 
-    getsum(a,b){
-        return a+b;
+    getsum(a, b) {
+        return a + b;
     }
 
-    getJson(data:JsonAsset) {
-        let json =data.json;
-        json.data=json.datas[0];
+    getJson(data: JsonAsset) {
+        let json = data.json;
+        json.data = json.datas[0];
         return json;
     }
 
     //这个方法是初步解析，需要深度解析还需自制呢
-    csvTojson(data: string):any {
+    csvTojson(data: string): any {
         const csvLines: string[] = data.split(/\r\n|\n|\r/);
         let csvFixedLines = [];
         for (let i = 0; i < csvLines.length; i++) {

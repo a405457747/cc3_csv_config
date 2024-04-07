@@ -10,5 +10,10 @@ export class Bk extends Component {
     update(deltaTime: number) {
         
     }
+
+    static add(a,b){
+        return a+b;
+    }
 }
-
+
+
