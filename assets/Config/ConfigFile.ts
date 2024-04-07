@@ -8,50 +8,42 @@ import { Bk } from './kk/Bk';
 export class ConfigFile extends Component {
 
     @property(TextAsset)
-    csvText: TextAsset|null = null;
+    csvText: TextAsset | null = null;
 
     @property(Prefab)
-    ps: Prefab|null = null;
+    ps: Prefab | null = null;
 
     @property(JsonAsset)
-    jsonText: JsonAsset|null = null;
+    jsonText: JsonAsset | null = null;
+
+    @property(Prefab)
+    nihao: Prefab | null = null;
 
     start() {
-        let prety_girl = {
-            age:33,
-            name:[],
-            kk: "andy"
+
+        let kObj:any={
+            age:332,
+            name:"biki"
         }
 
-        print("hello world",prety_girl,prety_girl)
-        print(3+2);
-        let a =1;
-        a+=1;
-        prety_girl.age+=a;
-        a+=2;
-        prety_girl.age+=a;
-        a+=3;
-        prety_girl.age+=a;
-        a+=Bk.add(7,8);
-        prety_girl.age+=a;
-        a+=1;
-        print(a);
-        
-        assert(3==3,"错了");
-
-        this.ff(Bk.add);
+        kObj.kk="naa";
+        delete kObj.kk;
+        if(kObj.kk!==undefined){
+            print("sksk");
+        }
+        print(Object.keys(kObj).length);
     }
 
-    getsum(a:number, b:number) {
+    getsum(a: number, b: number) {
         return a + b;
     }
 
-    ff(f:any){
-            print(f(6,6));
+    ff(f: any) {
+        print(f(6, 6));
     }
 
     getJson(data: JsonAsset) {
-        let json:any = data.json;
+        let json: any = data.json;
         json.data = json.datas[0];
         return json;
     }
@@ -74,7 +66,7 @@ export class ConfigFile extends Component {
 
         for (let i = 1; i < csvFixedLines.length; i++) {
             let csvFixedLines_item = csvFixedLines[i];
-            let jsObj:any = {};
+            let jsObj: any = {};
             //console.log(csvFixedLines[i]);
 
             for (let j = 0; j < keys.length; j++) {
