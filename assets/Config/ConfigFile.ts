@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, JsonAsset, Node, Prefab, TextAsset } from 'cc';
+import { _decorator, assert, Component, instantiate, JsonAsset, Node, Prefab, TextAsset } from 'cc';
 const { ccclass, property } = _decorator;
 
 
@@ -8,18 +8,19 @@ import { Bk } from './kk/Bk';
 export class ConfigFile extends Component {
 
     @property(TextAsset)
-    csvText: TextAsset = null;
+    csvText: TextAsset|null = null;
 
     @property(Prefab)
-    ps: Prefab = null;
+    ps: Prefab|null = null;
 
     @property(JsonAsset)
-    jsonText: JsonAsset = null;
+    jsonText: JsonAsset|null = null;
 
     start() {
         let prety_girl = {
-            age: 33,
-            name: "andy"
+            age:33,
+            name:[],
+            kk: "andy"
         }
 
         print("hello world",prety_girl,prety_girl)
@@ -36,26 +37,27 @@ export class ConfigFile extends Component {
         a+=1;
         print(a);
         
+        assert(3==3,"错了");
 
         this.ff(Bk.add);
     }
 
-    getsum(a, b) {
+    getsum(a:number, b:number) {
         return a + b;
     }
 
-    ff(f){
+    ff(f:any){
             print(f(6,6));
     }
 
     getJson(data: JsonAsset) {
-        let json = data.json;
+        let json:any = data.json;
         json.data = json.datas[0];
         return json;
     }
 
     //这个方法是初步解析，需要深度解析还需自制呢
-    csvTojson(data: string): any {
+    csvTojson(data: string) {
         const csvLines: string[] = data.split(/\r\n|\n|\r/);
         let csvFixedLines = [];
         for (let i = 0; i < csvLines.length; i++) {
@@ -72,7 +74,7 @@ export class ConfigFile extends Component {
 
         for (let i = 1; i < csvFixedLines.length; i++) {
             let csvFixedLines_item = csvFixedLines[i];
-            let jsObj = {};
+            let jsObj:any = {};
             //console.log(csvFixedLines[i]);
 
             for (let j = 0; j < keys.length; j++) {
