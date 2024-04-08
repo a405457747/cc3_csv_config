@@ -21,17 +21,28 @@ export class ConfigFile extends Component {
 
     start() {
 
-        let kObj:any={
-            age:332,
-            name:"biki"
+        let k:{ [key: string]: any } ={
+            a:32,
+            b:"age",
+            d:function(){
+                console.log(this.a,this.b);
+            }
         }
 
-        kObj.kk="naa";
-        delete kObj.kk;
-        if(kObj.kk!==undefined){
-            print("sksk");
+        k.e="woaini";
+        console.log(k.e)
+        delete k.e;
+        console.log(Object.keys(k).length)
+        if(k.b){
+            console.log("存在")
         }
-        print(Object.keys(kObj).length);
+        k.b=true;
+        console.log(k.b)
+    }
+
+    getAdd(a:number,b:number){
+        let k =a+b;
+        return k;
     }
 
     getsum(a: number, b: number) {
@@ -62,16 +73,16 @@ export class ConfigFile extends Component {
 
         let keys = csvFixedLines[0];
 
-        let res = { datas: [], data: null };
+        let res:{ [key: string]: any }  = { datas: [], data: null };
 
         for (let i = 1; i < csvFixedLines.length; i++) {
             let csvFixedLines_item = csvFixedLines[i];
-            let jsObj: any = {};
+            let jsObj :{ [key: string]: any }  = {};
             //console.log(csvFixedLines[i]);
 
             for (let j = 0; j < keys.length; j++) {
-                let key = keys[j];
-                let val = csvFixedLines_item[j];
+                let key:string = keys[j];
+                let val:any = csvFixedLines_item[j];
                 try {
                     val = JSON.parse(val);
                 } catch (error) {
