@@ -1,24 +1,54 @@
-import { _decorator, Component, Node, find,JsonAsset, resources } from 'cc';
+import { _decorator, Component, Node, find,JsonAsset, resources, sys } from 'cc';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('ConfigMgr')
 export class ConfigMgr extends Component {
 
-    static inst: ConfigMgr | null = null;
+    private static inst: ConfigMgr | null = null;
 
     static get Inst() {
+        /*
         if (ConfigMgr.inst === null) {
             let n = new Node("ConfigMgr");
             let i = n.addComponent(ConfigMgr);
             find("Canvas")?.addChild(n);
             ConfigMgr.inst = i;
         }
+        */
 
         return ConfigMgr.inst;
     }
+    protected onLoad(): void {
+        ConfigMgr.inst=this;
+    }
+
+    loadUserConfig(key:string,obj={}){
+       let str= sys.localStorage.getItem(key);
+       if(str==null){
+            return obj;
+       }else {
+             return JSON.parse(str);
+       }
+    }
+
+    saveUserConfig(key:string,obj){
+        sys.localStorage.setItem(key,JSON.stringify(obj));
+    }
+
+    removeUserConfig(key:string){
+        sys.localStorage.removeItem(key)
+    }
 
     test(){
+
+        /*
+        let obj=ConfigMgr.Inst.loadUserConfig("nihao",{a:3});
+        obj.a+=1;
+        ConfigMgr.Inst.saveUserConfig("nihao",obj);
+        console.log(obj);
+        */
+
         this.getData("config/main",(d:any)=>{   
             console.log("d",d);
         });

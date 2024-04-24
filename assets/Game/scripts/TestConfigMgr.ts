@@ -8,7 +8,7 @@ export class TestConfigMgr extends Component {
 
     cache:{ [key: string]: any }={}
     start() {
-        console.log("cdk");
+       // console.log("cdk");
 
         /*
         resources.load("config/main",JsonAsset,(e,a)=>{
@@ -29,12 +29,13 @@ export class TestConfigMgr extends Component {
         */
 
         // 执行异步操作
-this.performAsyncOperations();
+        //this.performAsyncOperations();
 
+        ConfigMgr.Inst.test();
     }
 
     update(deltaTime: number) {
-        console.log(this.cache["config/main"]);
+       // console.log(this.cache["config/main"]);
     }
 
 // 假设这是第一个异步操作
