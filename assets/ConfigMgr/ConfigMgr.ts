@@ -1,8 +1,9 @@
 import { _decorator, Component, Node, find,JsonAsset, resources, sys } from 'cc';
-const { ccclass, property } = _decorator;
+const { ccclass, property,executionOrder } = _decorator;
 
 
 @ccclass('ConfigMgr')
+@executionOrder(-1)
 export class ConfigMgr extends Component {
 
     private static inst: ConfigMgr | null = null;
